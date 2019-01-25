@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KolkoIKrzyzyk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="791.71">
     <Grid>
-        
+        <Grid HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="359">
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="120">
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="175,94,0,0" VerticalAlignment="Top" Width="75"/>
+            <Label x:Name="label" Content="Ilość okienek" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="399" Margin="374,10,0,0" VerticalAlignment="Top" Width="399"/>
+
     </Grid>
 </Window>
