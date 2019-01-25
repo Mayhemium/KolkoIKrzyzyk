@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ClassLibrary
 {
@@ -18,6 +19,37 @@ namespace ClassLibrary
             this.isPlayerXturn = false;
             mainGrid = MainGrid;
             CreateGrid(3);
+        }
+
+        public void move(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+
+            if(!b.Tag.Equals("button"))
+                return;
+            if (isPlayerXturn)
+            {
+                b.Content = "x";
+                b.Tag = "x";
+            }
+            else
+            {
+                b.Content = "o";
+                b.Tag = "o";
+            }
+            isPlayerXturn = !isPlayerXturn;
+            Check();
+        }
+
+        public void Check()
+        {
+            int i = 0;
+            foreach(Button b in mainGrid.Children)
+            {
+                b.Content = i;
+                i++;
+            }
+            
         }
 
         public void CreateGrid(int size)
@@ -49,8 +81,8 @@ namespace ClassLibrary
                 {
 
                     Button b = new Button();
-                    //b.Content = i + " " + j;
-                    
+                    b.Tag = "button";
+                    b.Click += move;
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
                     mainGrid.Children.Add(b);
