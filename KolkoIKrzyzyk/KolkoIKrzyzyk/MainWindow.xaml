@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KolkoIKrzyzyk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="791.71">
+        ResizeMode="CanMinimize"
+        Title="Kółko i krzyżyk" Height="450" Width="791.71"
+        Icon="./resources/noughts-and-crosses.png">
     <Grid>
         <Grid HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="359">
             <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="120">
-                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem IsSelected="True">3</ComboBoxItem>
                 <ComboBoxItem>4</ComboBoxItem>
                 <ComboBoxItem>5</ComboBoxItem>
                 <ComboBoxItem>6</ComboBoxItem>
@@ -19,18 +21,7 @@
             <Label x:Name="label" Content="Ilość okienek" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
         <Grid x:Name="MainGrid" HorizontalAlignment="Left" Height="399" Margin="374,10,0,0" VerticalAlignment="Top" Width="399">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="33*" />
-                <RowDefinition Height="33*" />
-                <RowDefinition Height="33*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="33*" />
-                <ColumnDefinition Width="33*" />
-                <ColumnDefinition Width="33*" />
-            </Grid.ColumnDefinitions>
-            <Button/>
-            <Button Grid.Column="1"/>
+           
         </Grid>
 
     </Grid>

@@ -17,7 +17,7 @@ namespace ClassLibrary
         {
             this.isPlayerXturn = false;
             mainGrid = MainGrid;
-            //CreateGrid(3);
+            CreateGrid(3);
         }
 
         public void CreateGrid(int size)
@@ -42,13 +42,17 @@ namespace ClassLibrary
 
             
 
-            Button b;
             for(int i = 0; i < size; i++)
             {
 
                 for (int j = 0; j < size; j++)
                 {
-                    b = new Button();
+
+                    Button b = new Button();
+                    //b.Content = i + " " + j;
+                    
+                    Grid.SetRow(b, i);
+                    Grid.SetColumn(b, j);
                     mainGrid.Children.Add(b);
                 }
 
