@@ -15,10 +15,23 @@
                 <ComboBoxItem>6</ComboBoxItem>
                 <ComboBoxItem>7</ComboBoxItem>
             </ComboBox>
-            <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="175,94,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="175,94,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
             <Label x:Name="label" Content="Ilość okienek" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="399" Margin="374,10,0,0" VerticalAlignment="Top" Width="399"/>
+        <Grid x:Name="MainGrid" HorizontalAlignment="Left" Height="399" Margin="374,10,0,0" VerticalAlignment="Top" Width="399">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*" />
+                <RowDefinition Height="33*" />
+                <RowDefinition Height="33*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33*" />
+                <ColumnDefinition Width="33*" />
+                <ColumnDefinition Width="33*" />
+            </Grid.ColumnDefinitions>
+            <Button/>
+            <Button Grid.Column="1"/>
+        </Grid>
 
     </Grid>
 </Window>

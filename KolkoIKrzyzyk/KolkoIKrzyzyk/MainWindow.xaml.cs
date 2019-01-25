@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClassLibrary;
 
 namespace KolkoIKrzyzyk
 {
@@ -20,9 +21,18 @@ namespace KolkoIKrzyzyk
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Game g;
+
         public MainWindow()
         {
             InitializeComponent();
+            g = new Game(MainGrid);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int gridSize =Convert.ToInt16( comboBox.Text);
+            g.CreateGrid(gridSize);
         }
     }
 }
