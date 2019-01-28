@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+
 namespace ClassLibrary
 {
     public class Game
@@ -37,23 +38,65 @@ namespace ClassLibrary
                 b.Content = "o";
                 b.Tag = "o";
             }
+            b.Background = Brushes.Beige;
             isPlayerXturn = !isPlayerXturn;
             Check();
         }
 
         public void Check()
         {
-            int i = 0;
-            foreach(Button b in mainGrid.Children)
+
+            int size = Convert.ToInt16(Math.Sqrt(mainGrid.Children.Count));
+            Button[] buttons = mainGrid.Children.Cast<Button>().ToArray<Button>();
+            char[,] arr = new char[size,size];
+
+            for (int i = 0; i < size; i++)
             {
-                //b.Content = i;
-                i++;
+                for (int j = 0; j < size; j++)
+                {
+                    switch (buttons[size*i + j].Tag)
+                    {
+                        case "button":
+                            arr[i, j] = ' ';
+                            break;
+                        case "x":
+                            arr[i, j] = 'x';
+                            break;
+                        case "o":
+                            arr[i, j] = 'o';
+                            break;
+                    }
+                }
             }
-            
+            int[,] result = MatrixLogics.checkForWin(arr);
+            foreach (int i in result)
+            {
+                if(i == 1)
+                {
+
+                    break;
+                }
+                    
+                if(i == 2)
+                {
+
+                    break;
+                }
+            }
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if(result[i,j]!=0)
+                    buttons[size * i + j].Content = result[i, j];
+                }
+            }
         }
 
         public void CreateGrid(int size)
         {
+            MatrixLogics.Reset();
+
             mainGrid.Children.Clear();
             mainGrid.RowDefinitions.Clear();
             mainGrid.ColumnDefinitions.Clear();
@@ -84,7 +127,7 @@ namespace ClassLibrary
                     b.Tag = "button";
                     b.FontFamily=new FontFamily("Comic Sans MS");
                     b.FontWeight = FontWeights.Bold;
-                    b.FontSize = 60;
+                    b.FontSize = 200/size;
                     b.Foreground = Brushes.Orange;
                     b.Background = Brushes.White;
                     Style s = new Style();
