@@ -31,7 +31,7 @@ namespace KolkoIKrzyzyk
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int gridSize =Convert.ToInt16( comboBox.Text);
+            int gridSize =Convert.ToInt16(comboBox.Text);
             g.CreateGrid(gridSize);
         }
     }

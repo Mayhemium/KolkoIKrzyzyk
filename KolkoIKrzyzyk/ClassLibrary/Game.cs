@@ -46,7 +46,7 @@ namespace ClassLibrary
             int i = 0;
             foreach(Button b in mainGrid.Children)
             {
-                b.Content = i;
+                //b.Content = i;
                 i++;
             }
             
@@ -82,6 +82,20 @@ namespace ClassLibrary
 
                     Button b = new Button();
                     b.Tag = "button";
+                    b.FontFamily=new FontFamily("Comic Sans MS");
+                    b.FontWeight = FontWeights.Bold;
+                    b.FontSize = 60;
+                    b.Foreground = Brushes.Orange;
+                    b.Background = Brushes.White;
+                    Style s = new Style();
+                    
+                    //Trigger t = new Trigger();
+                    //t.Property = TextBlock.IsMouseOverProperty;
+                    //t.Value = true;
+                    //Setter setter = new Setter(TextBlock.ForegroundProperty, Brushes.Red);
+                    //t.Setters.Add(setter);
+                    //s.Triggers.Add(t);
+                    b.Style = s;
                     b.Click += move;
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
