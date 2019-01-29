@@ -14,10 +14,14 @@ namespace ClassLibrary
     {
         bool isPlayerXturn;
         bool isPlayable;
+        int movesCount;
         Grid mainGrid;
+        Player firstPlayer = new PlayerX();
+        Player secondPlayer = new PlayerO();
 
         public Game(Grid MainGrid)
         {
+            movesCount = 0;
             this.isPlayerXturn = false;
             isPlayable = true;
             mainGrid = MainGrid;
@@ -44,7 +48,9 @@ namespace ClassLibrary
             }
             b.Background = Brushes.Beige;
             isPlayerXturn = !isPlayerXturn;
+            movesCount++;
             Check();
+
         }
 
         public void Check()
@@ -73,23 +79,15 @@ namespace ClassLibrary
                 }
             }
             int[,] result = MatrixLogics.checkForWin(arr);
+            if (movesCount == mainGrid.Children.Count)
+            {
+                MessageBox.Show("Koniec", "Game over", MessageBoxButton.OK);
+                isPlayable = false;
+            }
             if (result is null)
                 return;
             isPlayable = false;
-            //foreach (int i in result)
-            //{
-            //    if(i == 1)
-            //    {
-
-            //        break;
-            //    }
-                    
-            //    if(i == 2)
-            //    {
-
-            //        break;
-            //    }
-            //}
+            int won = 0;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -97,13 +95,28 @@ namespace ClassLibrary
                     if (result[i, j] != 0)
                     {
                         buttons[size * i + j].Background = Brushes.LightGreen;
+                        won = result[i, j];
                     }
                 }
             }
+            if (won == 1)
+            {
+                playerWon(firstPlayer);
+            }
+            if (won == 2)
+            {
+                playerWon(secondPlayer);
+            }
+        }
+
+        private void playerWon(Player p)
+        {
+            MessageBox.Show(Application.Current.MainWindow, "Gracz " + p.getName() + " wygrał", "Game over",MessageBoxButton.OK);
         }
 
         public void CreateGrid(int size)
         {
+            movesCount = 0;
             isPlayerXturn = false;
             isPlayable = true;
             MatrixLogics.Reset();
