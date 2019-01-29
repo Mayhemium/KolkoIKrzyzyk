@@ -11,37 +11,35 @@ namespace ClassLibrary
         static bool found = false;
         public static int[,] checkForWin(char[,] arr)
         {
-            if (found) return null;
-            int[,] resp = new int[arr.GetLength(0), arr.GetLength(1)];
 
             int[,] temp = checkColumns(arr);
             if (found)
             {
-                //found = false;
+                found = false;
                 return temp;
             }
 
             temp = checkRows(arr);
             if (found)
             {
-                //found = false;
+                found = false;
                 return temp;
             }
 
             temp = checkLeftTopToRightBottom(arr);
             if (found)
             {
-                //found = false;
+                found = false;
                 return temp;
             }
 
             temp = checkRightTopToLeftBottom(arr);
             if (found)
             {
-                //found = false;
+                found = false;
                 return temp;
             }
-            return resp;
+            return null;
         }
 
         private static int[,] checkRows(char[,] arr)
@@ -180,16 +178,16 @@ namespace ClassLibrary
             string s = stringRightTopToLeftBottom(arr, x, y);
             if (s.Contains("xxx"))
             {
-                temp[s.IndexOf("xxx") + x, s.IndexOf("xxx") + y + 2] = 1;
-                temp[s.IndexOf("xxx") + 1 + x, s.IndexOf("xxx") + 1 + y] = 1;
-                temp[s.IndexOf("xxx") + 2 + x, s.IndexOf("xxx")  + y] = 1;
+                temp[arr.GetLength(0) - s.IndexOf("xxx") - x - 3, s.IndexOf("xxx") + y + 2] = 1;
+                temp[arr.GetLength(0) - s.IndexOf("xxx") - x - 2, s.IndexOf("xxx") + 1 + y] = 1;
+                temp[arr.GetLength(0) - s.IndexOf("xxx") - x - 1, s.IndexOf("xxx")  + y] = 1;
                 found = true;
             }
             if (s.Contains("ooo"))
             {
-                temp[s.IndexOf("ooo") + x, s.IndexOf("ooo") + y + 2] = 2;
-                temp[s.IndexOf("ooo") + 1 + x, s.IndexOf("ooo") + 1 + y] = 2;
-                temp[s.IndexOf("ooo") + 2 + x, s.IndexOf("ooo")  + y] = 2;
+                temp[arr.GetLength(0) - s.IndexOf("ooo") - x - 3, s.IndexOf("ooo") + y + 2] = 2;
+                temp[arr.GetLength(0) - s.IndexOf("ooo") - x - 2, s.IndexOf("ooo") + 1 + y] = 2;
+                temp[arr.GetLength(0) - s.IndexOf("ooo") - x - 1, s.IndexOf("ooo")  + y] = 2;
                 found = true;
             }
             return temp;

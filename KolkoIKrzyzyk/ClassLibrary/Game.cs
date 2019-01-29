@@ -13,17 +13,21 @@ namespace ClassLibrary
     public class Game
     {
         bool isPlayerXturn;
+        bool isPlayable;
         Grid mainGrid;
 
         public Game(Grid MainGrid)
         {
             this.isPlayerXturn = false;
+            isPlayable = true;
             mainGrid = MainGrid;
             CreateGrid(3);
         }
 
         public void move(object sender, RoutedEventArgs e)
         {
+            if (!isPlayable)
+                return;
             Button b = (Button)sender;
 
             if(!b.Tag.Equals("button"))
@@ -69,32 +73,39 @@ namespace ClassLibrary
                 }
             }
             int[,] result = MatrixLogics.checkForWin(arr);
-            foreach (int i in result)
-            {
-                if(i == 1)
-                {
+            if (result is null)
+                return;
+            isPlayable = false;
+            //foreach (int i in result)
+            //{
+            //    if(i == 1)
+            //    {
 
-                    break;
-                }
+            //        break;
+            //    }
                     
-                if(i == 2)
-                {
+            //    if(i == 2)
+            //    {
 
-                    break;
-                }
-            }
+            //        break;
+            //    }
+            //}
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    if(result[i,j]!=0)
-                    buttons[size * i + j].Content = result[i, j];
+                    if (result[i, j] != 0)
+                    {
+                        buttons[size * i + j].Background = Brushes.LightGreen;
+                    }
                 }
             }
         }
 
         public void CreateGrid(int size)
         {
+            isPlayerXturn = false;
+            isPlayable = true;
             MatrixLogics.Reset();
 
             mainGrid.Children.Clear();
@@ -130,15 +141,6 @@ namespace ClassLibrary
                     b.FontSize = 200/size;
                     b.Foreground = Brushes.Orange;
                     b.Background = Brushes.White;
-                    Style s = new Style();
-                    
-                    //Trigger t = new Trigger();
-                    //t.Property = TextBlock.IsMouseOverProperty;
-                    //t.Value = true;
-                    //Setter setter = new Setter(TextBlock.ForegroundProperty, Brushes.Red);
-                    //t.Setters.Add(setter);
-                    //s.Triggers.Add(t);
-                    b.Style = s;
                     b.Click += move;
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
