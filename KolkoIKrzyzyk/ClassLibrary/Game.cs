@@ -10,6 +10,9 @@ using System.Windows.Media;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Logic for the tic tac toe game
+    /// </summary>
     public class Game
     {
         bool isPlayerXturn;
@@ -19,6 +22,10 @@ namespace ClassLibrary
         Player firstPlayer = new PlayerX();
         Player secondPlayer = new PlayerO();
 
+        /// <summary>
+        /// Initializing game
+        /// </summary>
+        /// <param name="MainGrid">A main grid of tic tac toe.</param>
         public Game(Grid MainGrid)
         {
             movesCount = 0;
@@ -28,6 +35,11 @@ namespace ClassLibrary
             CreateGrid(3);
         }
 
+        /// <summary>
+        /// Executing players movement based on turns and state of the game
+        /// </summary>
+        /// <param name="sender">Object that started event.</param>
+        /// <param name="e">Contains routed event data.</param>
         public void move(object sender, RoutedEventArgs e)
         {
             if (!isPlayable)
@@ -53,6 +65,9 @@ namespace ClassLibrary
 
         }
 
+        /// <summary>
+        /// Checking for the conditions of win / draw.
+        /// </summary>
         public void Check()
         {
 
@@ -109,6 +124,10 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Sending message informing about win containing player identity
+        /// </summary>
+        /// <param name="p">Player that won the game.</param>
         private void playerWon(Player p)
         {
             MessageBox.Show(Application.Current.MainWindow, "Gracz " + p.getName() + " wygrał", "Game over",MessageBoxButton.OK);
